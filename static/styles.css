@@ -53,3 +53,12 @@ input[type="submit"]:hover {
     border: none;
     cursor: pointer;
 }
+
+table {
+    width: 70%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}

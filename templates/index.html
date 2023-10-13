@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ css }}">
+    <title>RCT Branch Allocation</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>RCT Branch Allocation</h1>
     <div id="container">
-        <form method="POST">
+        <form method="POST" action="{{ url_for('index') }}">
             <label for="salt">Salt:</label>
-            <input type="text" id="salt" name="salt" required>
-
+            <input type="text" name="salt" id="salt" required>
+            <br>
             <label for="probability">Probability:</label>
-            <input type="number" id="probability" name="probability" step="any" min="0" max="1" required>
-            
-            <label for="input">Data:</label>
-            <textarea id="input" name="input" rows="4" required></textarea>
-
-            
-
+            <input type="number" name="probability" id="probability" step="any" min="0" max="1" required>
+            <br>
+            <label for="data">Data:</label>
+            <textarea name="data" id="data" rows="4" required></textarea>
+            <br>
             <input type="submit" value="Submit">
         </form>
     </div>

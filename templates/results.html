@@ -2,41 +2,22 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-    <style>
-        table {
-            width: 70%;
-            margin: 0 auto;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-    </style>
 </head>
 <body>
     <h1>Results</h1>
-    <h2>Salt: {{ salt }}</h2>
-    <h2>Probability: {{ probability }}</h2>
+    <h2>Salt: {{ form.salt.data }}</h2>
+    <h2>Probability: {{ form.probability.data }}</h2>
     <table>
         <tr>
             <th>Inputs</th>
             <th>Outputs</th>
         </tr>
-        {% for i in range(list1|length) %}
+        {% for email, decision in table_data %}
         <tr>
-            <td>{{ list1[i] }}</td>
-            <td>{{ list2[i] }}</td>
+            <td>{{ email }}</td>
+            <td>{{ decision }}</td>
         </tr>
         {% endfor %}
     </table>
-    
-    <!-- Add a button to generate the static HTML -->
-    <form action="/generate_static_html" method="POST">
-        <input type="hidden" name="salt" value="{{ salt }}">
-        <input type="hidden" name="probability" value="{{ probability }}">
-        <input type="hidden" name="list1" value="{{ list1|join('<br>') }}">
-        <input type="hidden" name="list2" value="{{ list2|join('<br>') }}">
-        <input type="submit" value="Generate static HTML">
-    </form>
 </body>
 </html>
