@@ -8,7 +8,6 @@
             margin: 0 auto;
             border-collapse: collapse;
         }
-
         table, th, td {
             border: 1px solid black;
         }
@@ -30,5 +29,14 @@
         </tr>
         {% endfor %}
     </table>
+    
+    <!-- Add a button to generate the static HTML -->
+    <form action="/generate_static_html" method="POST">
+        <input type="hidden" name="salt" value="{{ salt }}">
+        <input type="hidden" name="probability" value="{{ probability }}">
+        <input type="hidden" name="list1" value="{{ list1|join('<br>') }}">
+        <input type="hidden" name="list2" value="{{ list2|join('<br>') }}">
+        <input type="submit" value="Generate static HTML">
+    </form>
 </body>
 </html>
