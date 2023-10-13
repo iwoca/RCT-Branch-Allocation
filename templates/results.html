@@ -8,10 +8,23 @@
     <h1>Results</h1>
     <h2>Salt: {{ usage.salt }}</h2>
     <h2>Probability: {{ usage.probability }}</h2>
-    <div id="table-container"></div>
-    <script>
-        var tableHtml = '{{ usage.table_html|safe }}';
-        document.getElementById('table-container').innerHTML = tableHtml;
-    </script>
+    {% if usage %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Inputs</th>
+                    <th>Outputs</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 </body>
 </html>

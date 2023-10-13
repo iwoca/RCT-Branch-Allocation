@@ -7,6 +7,7 @@ COPY . /app/
 RUN pip install Flask
 RUN pip install flask_wtf
 RUN pip install sqlalchemy
+RUN pip install Flask-SQLAlchemy
 
 EXPOSE 5000
 

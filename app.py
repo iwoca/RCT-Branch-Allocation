@@ -50,11 +50,16 @@ def index():
 def results():
     usage = Usage.query.order_by(Usage.id.desc()).first()
     if usage:
-        table_html = usage.table_html
+        table_data = [(email, branch_decision(email, usage.salt, usage.probability)) for email in split_multiline(usage.data)]
+        table_html = '<table><thead><tr><th>Inputs</th><th>Outputs</th></tr></thead><tbody>'
+        for row in table_data:
+            table_html += f'<tr><td>{row[0]}</td><td>{row[1]}</td></tr>'
+        table_html += '</tbody></table>'
     else:
+        table_data = []
         table_html = ''
     form = MyForm()
-    return render_template('results.html', usage=usage, table_html=table_html, form=form)
+    return render_template('results.html', usage=usage, table_data=table_data, table_html=table_html, form=form)
 
 
 # Client-provided function
