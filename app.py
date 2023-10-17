@@ -37,6 +37,7 @@ def split_multiline(input_text):
     # Use regular expression to split the input using \n, \r\n, or \r as delimiters
     split_pattern = r'[\n\r\t\r\n]+'
     result = re.split(split_pattern, input_text)
+    result = [item.strip().split('@')[1] for item in result if '@' in item]
     return result
 
 
