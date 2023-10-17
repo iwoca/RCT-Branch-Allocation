@@ -4,6 +4,7 @@ import re
 from flask_wtf import FlaskForm
 from wtforms import StringField, FloatField, TextAreaField
 from wtforms.validators import DataRequired, NumberRange
+from werkzeug.datastructures import ImmutableMultiDict
 
 
 app = Flask(__name__)
@@ -17,17 +18,13 @@ class MyForm(FlaskForm):
 
 @app.route('/', methods=['GET'])
 def index():
-    form = MyForm()
-    if 'salt' in request.args and 'probability' in request.args and 'data' in request.args:
-        form.salt.data = request.args['salt']
-        form.probability.data = float(request.args['probability'])
-        form.data.data = request.args['data']
-        salt = form.salt.data
-        probability = form.probability.data
-        data = form.data.data
-        table_data = [(email, branch_decision(email, salt, probability)) for email in split_multiline(data)]
-        return render_template('results.html', table_data=table_data, form=form)
-    return render_template('index.html', form=form)
+    salt = request.args.get('salt', '')
+    probability = float(request.args.get('probability', default=0.0))
+    data = request.args.get('data', '')
+    formdata = ImmutableMultiDict([('salt', salt), ('probability', probability), ('data', data)])
+    form = MyForm(formdata=formdata)
+    table_data = [(email, branch_decision(email, salt, probability)) for email in split_multiline(data)] if data else []
+    return render_template('combined.html', form=form, table_data=table_data)
 
 
 # Client-provided function

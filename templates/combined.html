@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RCT Branch Allocation</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>RCT Branch Allocation</h1>
+    <div id="container">
+        <form method="GET" action="{{ url_for('index') }}">
+            <label for="salt">Salt:</label>
+            <input type="text" name="salt" id="salt" value="{{ form.salt.data }}" required>
+            <br>
+            <label for="probability">Probability:</label>
+            <input type="number" name="probability" id="probability" step="any" min="0" max="1" value="{{ form.probability.data }}" required>
+            <br>
+            <label for="data">Data:</label>
+            <textarea name="data" id="data" rows="4" required>{{ form.data.data }}</textarea>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+        {% if table_data %}
+        <h2>Salt: {{ form.salt.data }}</h2>
+        <h2>Probability: {{ form.probability.data }}</h2>
+        <table>
+            <tr>
+                <th>Inputs</th>
+                <th>Outputs</th>
+            </tr>
+            {% for email, decision in table_data %}
+            <tr>
+                <td>{{ email }}</td>
+                <td>{{ decision }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</body>
+</html>
