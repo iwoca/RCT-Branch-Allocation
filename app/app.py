@@ -19,7 +19,7 @@ class MyForm(FlaskForm):
     )
     data = TextAreaField("Data", validators=[DataRequired()])
     retrieve_domain = BooleanField(
-        "Retrieve only the domain of the e-mail?", default=False
+        "domain_only", default=False
     )
 
 
