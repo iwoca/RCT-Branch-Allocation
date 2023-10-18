@@ -23,7 +23,7 @@ class MyForm(FlaskForm):
     )
 
 
-@app.route("/", methods=["GET"])
+@app.route("/email", methods=["GET"])
 def index():
     salt = request.args.get("salt", "")
     probability = float(request.args.get("probability", default=0.0))
