@@ -17,7 +17,7 @@
             <label for="data">Data:</label>
             <textarea name="data" id="data" rows="4" required>{{ form.data.data }}</textarea>
             <br>
-            <label for="retrieve_domain">Retrieve only the domain of the e-mail:</label>
+            <label for="retrieve_domain">domain_only</label>
             <div class="checkbox-container">
                 <input type="checkbox" name="retrieve_domain" id="retrieve_domain" {% if form.retrieve_domain.data %}checked{% endif %}>
             </div>
