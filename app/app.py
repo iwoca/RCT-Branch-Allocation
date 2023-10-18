@@ -69,4 +69,4 @@ def split_multiline(input_text, retrieve_domain=False):
 
 
 if __name__ == "__main__":
-    app.run(debug=bool(bool(os.getenv("DEBUG"))), host="0.0.0.0", port=80)
+    app.run(debug=bool(os.getenv("DEBUG")), host="0.0.0.0", port=80)
